@@ -4,7 +4,7 @@ const nodemailer = require("nodemailer");
 const sendSlackNotification = require("./slack");
 
 // send mail and slack notification
-router.post("/register", (req, res) => {
+router.post("/send-message", (req, res) => {
   const { email, name } = req.body;
 
   try {
