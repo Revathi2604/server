@@ -1,8 +1,11 @@
 const axios = require("axios");
 
-const sendSlackNotification = (name, email) => {
+const sendSlackNotification = (details) => {
   const slackData = JSON.stringify({
-    text: `New registration: ${name} - ${email}`,
+    text: `User  : ${details.name}
+Email : ${details.email}
+Phone : ${details.phoneNumber}
+Turnover : ${details.turnover}`,
   });
   const slackConfig = {
     method: "post",

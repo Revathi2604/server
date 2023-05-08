@@ -5,6 +5,7 @@ const sendSlackNotification = require("./slack");
 
 // send mail and slack notification
 router.post("/send-message", (req, res) => {
+  console.log(req.body);
   const { email, name } = req.body;
 
   try {
@@ -22,7 +23,7 @@ router.post("/send-message", (req, res) => {
       subject: "Sending Email With React And Nodejs",
       html: `
         <div style="font-family: Arial; font-size: 14px;">
-          <p>Hello and welcome, ${name}!</p>
+          <p>Hello and welcome, <b>${name}</b>!</p>
           <p>Thank you for choosing us. We appreciate your interest and look forward to connecting with you soon.</p>
           <p>If you have any questions or concerns, please don't hesitate to reach out to us.</p>
         </div>
@@ -33,7 +34,7 @@ router.post("/send-message", (req, res) => {
         console.log("Error" + error);
       } else {
         console.log("Email sent:" + info.response);
-        sendSlackNotification(name, email); // call the function to send the Slack notification
+        sendSlackNotification(req.body); // call the function to send the Slack notification
       }
     });
 
